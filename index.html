@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Database Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+             background-color: rgba(7, 7, 7, 0.8);
+            padding: 50px;
+        }
+
+        .login-container {
+            background-color: rgba(7, 7, 7, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        h2 {
+            color: green;
+            font-weight: bold;
+        }
+
+        .form-input {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-input label {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-input input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            display: none;
+        }
+
+        .secondary-button {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .secondary-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-background">
+        <video autoplay muted loop playsinline id="background-video">
+            <source src="./candidate-intro-video.mp4" type="video/mp4">
+            <source src="./candidate-intro-video.mp4" type="video/webm">
+            <source src="./candidate-intro-video.mp4" type="video/ogv">
+          </video>
+      </div>
+      
+
+<div class="login-container">
+    <h2>Candidate Database Login</h2>
+    <form id="loginForm">
+        <div class="form-input">
+            <label for="candidateId" style="color: white;">Enter Candidate ID</label>
+            <input type="text" id="candidateId" placeholder="Enter your Candidate ID" required>
+        </div>
+        <button type="submit" style="color: white;margin-bottom: 20px;">Login</button>
+    </form>
+    <p class="error-message" id="error-message">Invalid Candidate ID. Please check and try again.</p>
+    <button class="secondary-button" onclick="window.location.href='form1.html'">Get a Candidate ID</button>
+</div>
+
+<div class="message">
+    <img src="./WhatsApp Image 2024-12-06 at 00.05.12_71a90961.jpg" 
+         style="justify-content: center; display: flex; align-items: center; margin-left: 30%; margin-top: 40px; border: 8px solid green; border-radius: 13px;width:350px;"
+         onclick="window.location.href='https://wa.me/message/4YLTUR33HC3LA1';">
+</div>
+
+<script>
+
+// const sanitizeInput = (input) => input.replace(/[^a-zA-Z0-9]/g, '');
+// const enteredId = sanitizeInput(document.getElementById('candidateId').value.trim());
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var video = document.getElementById('background-video');
+    if (video.paused) {
+        video.play();
+    }
+  });
+
+
+    // Debug: Check if any subscriberLoginID exists in localStorage
+    console.log("Stored Candidate ID (on page load):", localStorage.getItem('subscriberLoginID'));
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const enteredId = document.getElementById('candidateId').value.trim();
+        const storedId = localStorage.getItem('subscriberLoginID'); // Retrieve login ID from localStorage
+
+        // Logging for debugging
+        console.log('Entered Candidate ID:', enteredId);
+        console.log('Stored Candidate ID:', storedId);
+
+        if (storedId && enteredId === storedId) {
+            window.location.href = 'dashboard.html'; // Redirect to the dashboard
+        } else {
+            // Show error message
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = storedId
+                ? "Invalid Candidate ID. Please check and try again."
+                : "No Candidate ID found. Please register first.";
+            errorMessage.style.display = 'block';
+        }
+    });
+</script>
+
+</body>
+</html>
