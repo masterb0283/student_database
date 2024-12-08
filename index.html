@@ -93,13 +93,13 @@
     <h2>Candidate Database Login</h2>
     <form id="loginForm">
         <div class="form-input">
-            <label for="candidateId" style="color: white;">Enter Candidate ID</label>
-            <input type="text" id="candidateId" placeholder="Enter your Candidate ID" required>
+            <label for="candidateId" style="color: white;">Enter Candidate Login ID</label>
+            <input type="text" id="candidateId" placeholder="Enter your Candidate Login ID" required>
         </div>
         <button type="submit" style="color: white;margin-bottom: 20px;">Login</button>
     </form>
     <p class="error-message" id="error-message">Invalid Candidate ID. Please check and try again.</p>
-    <button class="secondary-button" onclick="window.location.href='form1.html'">Get a Candidate ID</button>
+    <button class="secondary-button" onclick="window.location.href='form1.html'">Get a Candidate Login ID</button>
 </div>
 
 <div class="message">
@@ -108,7 +108,23 @@
          onclick="window.location.href='https://wa.me/message/4YLTUR33HC3LA1';">
 </div>
 
+<div  class="add" style="margin-top: 30px;margin-left: 10%;">
+    <b style="color:red; margin-top: 20px;">New candidate should click on Get a Candidate Login ID, and register your details first, you will get your Login ID immediately after you register on the Database.</b>
+    <p style="color: green;font-weight: bolder;">Type in your login ID and click on login if you have registered already.</b>
+</div>
+
 <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+        // Show alert for new users
+        alert("New candidate should click on 'Get a Candidate Login ID,' and register your details first. You will get your Login ID immediately after you register on the Database.");
+
+        // Play the background video if it's paused
+        var video = document.getElementById('background-video');
+        if (video && video.paused) {
+            video.play();
+        }
+    });
 
 // const sanitizeInput = (input) => input.replace(/[^a-zA-Z0-9]/g, '');
 // const enteredId = sanitizeInput(document.getElementById('candidateId').value.trim());
