@@ -360,27 +360,27 @@ function validateFormData(data) {
     function submitFormData(data) {
         console.log("Submitting Data:", data); // Debugging: Log data before submission
         fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => response.json())
-            .then(serverResponse => {
-                localStorage.setItem('subscriberLoginID', serverResponse.loginID);
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+})
+    .then(response => response.json())
+    .then(serverResponse => {
+        localStorage.setItem('subscriberLoginID', serverResponse.loginID);
 
-                displayMessage(
-                    `Registration successful! <br >Your Login ID = <strong>${serverResponse.loginID}</strong>`,
-                    'green'
-                );
+        // Call displayMessage with success feedback and the login ID
+        displayMessage("Registration successful!", serverResponse.loginID);
 
-                resetForm();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                displayMessage("Registration failed. Please try again.", 'red');
-            });
+        resetForm(); // Reset the form if needed
+    })
+    .catch(error => {
+        console.error('Error:', error);
+
+        // Call displayMessage for error feedback
+        displayMessage("Registration failed. Please try again.", null);
+    });
 
         // Debugging: Verify stored data
         fetch(apiUrl)
@@ -394,11 +394,14 @@ function validateFormData(data) {
     }
 
     // Function to display messages
-    function displayMessage(message, color) {
-        const messageContainer = document.getElementById('message');
-        messageContainer.innerHTML = message;
-        messageContainer.style.color = color;
-    }
+    function displayMessage(message, loginID) {
+    const messageContainer = document.getElementById('message'); // Ensure this element exists in your HTML
+    messageContainer.innerHTML = `
+        <p style="color: green; font-size: 18px; font-weight: bold;">${message}</p>
+        ${loginID ? `<p style="color: red; font-size: 16px;">Your Login ID= <strong>${loginID}</strong></p>` : ''}
+    `;
+}
+
 
     // Function to reset the form
     function resetForm() {
