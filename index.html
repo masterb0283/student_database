@@ -96,10 +96,10 @@
             <label for="candidateId" style="color: white;">Enter Candidate Login ID</label>
             <input type="text" id="candidateId" placeholder="Enter your Candidate Login ID" required>
         </div>
-        <button type="submit" style="color: white;margin-bottom: 20px;">Login</button>
+        <button type="submit" style="color: white;margin-bottom: 20px;">LOGIN TO DATABASE</button>
     </form>
     <p class="error-message" id="error-message">Invalid Candidate ID. Please check and try again.</p>
-    <button class="secondary-button" onclick="window.location.href='form1.html'">Get a Candidate Login ID</button>
+    <button class="secondary-button" onclick="window.location.href='form1.html'">REGISTER ON DATABASE</button>
 </div>
 
 <div class="message">
@@ -109,7 +109,7 @@
 </div>
 
 <div  class="add" style="margin-top: 30px;margin-left: 10%;">
-    <b style="color:red; margin-top: 20px;">New candidate should click on Get a Candidate Login ID, and register your details first, you will get your Login ID immediately after you register on the Database.</b>
+    <b style="color:red; margin-top: 20px;">Only New candidate should click on 'REGISTER', and register your details first, you will get your Login ID immediately after you register on the Database.</b>
     <p style="color: green;font-weight: bolder;">Type in your login ID and click on login if you have registered already.</b>
 </div>
 
@@ -117,7 +117,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
         // Show alert for new users
-        alert("New candidate should click on 'Get a Candidate Login ID,' and register your details first. You will get your Login ID immediately after you register on the Database.");
+        alert("Only New candidate should click on 'Register,' and register your details first. You will get your Login ID immediately after you register on the Database.{login with your ID if you have registered on the database already}");
 
         // Play the background video if it's paused
         var video = document.getElementById('background-video');
