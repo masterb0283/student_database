@@ -360,40 +360,43 @@ function validateFormData(data) {
 
     // Function to submit form data
     function submitFormData(data) {
-        console.log("Submitting Data:", data); // Debugging: Log data before submission
-        fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-})
-    .then(response => response.json())
-    .then(serverResponse => {
-        localStorage.setItem('subscriberLoginID', serverResponse.loginID);
-
-        // Call displayMessage with success feedback and the login ID
-        displayMessage("Registration successful!", serverResponse.loginID);
-
-        resetForm(); // Reset the form if needed
+    console.log("Submitting Data:", data); // Debugging: Log data before submission
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
     })
-    .catch(error => {
-        console.error('Error:', error);
+        .then(response => response.json())
+        .then(serverResponse => {
+            localStorage.setItem('subscriberLoginID', serverResponse.loginID);
 
-        // Call displayMessage for error feedback
-        displayMessage("Registration failed. Please try again.", null);
-    });
+            // Call displayMessage with success feedback and the login ID
+            displayMessage("Registration successful!", serverResponse.loginID);
 
-        // Debugging: Verify stored data
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                console.log("Stored Data on the Server:", data);
-                const latestEntry = data[data.length - 1];
-                console.log("Latest Assistance Package:", latestEntry.assistancePackage);
-            })
-            .catch(error => console.error("Error fetching stored data:", error));
-    }
+            // Show alert with the specified message
+            alert('Dear candidate, if you are yet to subscribe, your details will be removed after 3hrs. So message OFFICIAL DAN NOW TO MAKE PAYMENT 09027420688 to secure your slot on the database immediately after you registered.');
+
+            resetForm(); // Reset the form if needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+
+            // Call displayMessage for error feedback
+            displayMessage("Registration failed. Please try again.", null);
+        });
+
+    // Debugging: Verify stored data
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Stored Data on the Server:", data);
+            const latestEntry = data[data.length - 1];
+            console.log("Latest Assistance Package:", latestEntry.assistancePackage);
+        })
+        .catch(error => console.error("Error fetching stored data:", error));
+}
 
     // Function to display messages
     function displayMessage(message, loginID) {
