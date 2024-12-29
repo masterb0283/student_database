@@ -253,9 +253,8 @@ function displayProfile(subscriber) {
         <p><span>Full Name:</span> ${subscriber.fullName || 'N/A'}</p>
         <p><span>State of Origin:</span> ${subscriber.stateOfOrigin || 'N/A'}</p>
         <p><span>Age:</span> ${subscriber.age || 'N/A'}</p>
-<p><span>JAMB Registration Number:</span> ${subscriber.jambregnumber || 'NOT AVAILABLE NOW'}</p>
-<p><span>Seat Number:</span> ${subscriber.seatnumber || 'NOT AVAILABLE NOW'}</p>
-
+        <p><span>JAMB Registration Number:</span> ${subscriber.jambregnumber || 'NOT AVAILABLE NOW'}</p>
+        <p><span>Seat Number:</span> ${subscriber.seatnumber || 'NOT AVAILABLE NOW'}</p>
         <p><span>Assistance Package:</span> ${subscriber.assistancePackage || 'N/A'}</p>
         <p><span>Desired Score:</span> ${subscriber.score || 'N/A'}</p>
         <p><span>Amount Paid:</span> ${subscriber.amountPaid || 'N/A'}</p>
@@ -266,6 +265,16 @@ function displayProfile(subscriber) {
     // Display the passport image if available, else use a placeholder
     const passportUrl = subscriber.passport && subscriber.passport.length > 0 ? subscriber.passport : placeholder;
     document.getElementById('passportImage').src = passportUrl;
+
+    // Update verification status based on amount paid
+    const verificationStatus = document.getElementById('verificationStatus');
+    if (subscriber.amountPaid < 10200) {
+        verificationStatus.textContent = "NOT VERIFIED";
+        verificationStatus.style.color = "red";
+    } else {
+        verificationStatus.textContent = "VERIFIED";
+        verificationStatus.style.color = "green";
+    }
 
     // Save the updated profile to localStorage to immediately reflect changes
     localStorage.setItem('subscriberProfile', JSON.stringify(subscriber));
